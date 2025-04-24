@@ -1,5 +1,4 @@
-version: '3'
-
+name: pydantic-ai-visual
 services:
   pydantic-ai-visual:
     image: ghcr.io/wh1isper/pydantic-ai-visual:latest
