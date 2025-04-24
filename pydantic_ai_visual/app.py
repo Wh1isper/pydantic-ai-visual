@@ -1,5 +1,6 @@
 import base64
 import json
+from functools import lru_cache
 
 import gradio as gr
 import httpx
@@ -19,6 +20,7 @@ from pydantic_ai.messages import (
 )
 
 
+@lru_cache(maxsize=64)
 def load_messages(messages: str) -> list[ModelMessage]:
     """Load messages from a file, URL, or direct JSON content."""
     if messages.startswith("file://"):
@@ -78,7 +80,13 @@ def convert_to_chat_messages(  # noqa: C901
 
                 elif isinstance(part, ToolReturnPart):
                     # Display tool returns
-                    content = part.model_response_str()
+                    if isinstance(part.content, dict) and part.content.get("kind") == "binary":
+                        media_type = part.content.get("media_type")
+                        img_data = part.content.get("data")
+                        img_src = f"data:{media_type};base64,{img_data}"
+                        content = f"<img src='{img_src}' alt='Image' />"
+                    else:
+                        content = part.model_response_str()
                     chat_messages.append(
                         ChatMessage(
                             role="assistant",

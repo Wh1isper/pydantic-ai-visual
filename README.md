@@ -8,4 +8,4 @@
 
 pydantic-ai messages visualization
 
-Try on: https://pai-msg.wh1isper.top:8891/
+Try it: https://pai-msg.wh1isper.top:8891/
