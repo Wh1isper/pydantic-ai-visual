@@ -10,7 +10,7 @@ def start(host, port):
     """
     Start the server.
     """
-    app.launch(server_port=port, server_name=host, share=False)
+    app.launch(server_port=port, server_name=host, share=True)
 
 
 @click.group()
