@@ -3,9 +3,6 @@ version: '3'
 services:
   pydantic-ai-visual:
     image: ghcr.io/wh1isper/pydantic-ai-visual:latest
-    environment:
-      - API_TOKEN=${API_TOKEN}
-      - CURRENT_SERVER_LOCATION=${CURRENT_SERVER_LOCATION}
     restart: unless-stopped
 
   caddy:
