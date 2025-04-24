@@ -7,3 +7,5 @@
 [![License](https://img.shields.io/github/license/wh1isper/pydantic-ai-visual)](https://img.shields.io/github/license/wh1isper/pydantic-ai-visual)
 
 pydantic-ai messages visualization
+
+Try on: https://pai-msg.wh1isper.top:8891/
