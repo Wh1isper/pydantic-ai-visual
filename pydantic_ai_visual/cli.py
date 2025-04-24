@@ -1,5 +1,4 @@
 import click
-import uvicorn
 
 from .app import app
 
@@ -11,7 +10,7 @@ def start(host, port):
     """
     Start the server.
     """
-    uvicorn.run(app, host=host, port=port, timeout_graceful_shutdown=60)
+    app.launch(server_port=port, server_name=host, share=False)
 
 
 @click.group()
