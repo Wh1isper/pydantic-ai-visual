@@ -1,5 +1,9 @@
 # Install uv
 FROM python:3.12-slim
+
+ENV PYTHONUNBUFFERED=1 \
+    HF_HOME=/home/user/huggingface
+
 RUN apt-get update && apt-get install -y tini && rm -rf /var/lib/apt/lists/*
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
 
