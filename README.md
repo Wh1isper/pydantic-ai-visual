@@ -18,4 +18,4 @@ app_port: 8891
 
 pydantic-ai messages visualization
 
-Try it: https://pai-visual.wh1isper.top:8891/
+Try it: https://wh1isper-pydantic-ai-visual.hf.space/
