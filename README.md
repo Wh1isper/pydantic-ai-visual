@@ -1,3 +1,12 @@
+---
+title: pydantic-ai-visual
+emoji: ✉️
+colorFrom: purple
+colorTo: purple
+sdk: docker
+pinned: false
+---
+
 # pydantic-ai-visual
 
 [![Release](https://img.shields.io/github/v/release/wh1isper/pydantic-ai-visual)](https://img.shields.io/github/v/release/wh1isper/pydantic-ai-visual)
