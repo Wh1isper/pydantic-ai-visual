@@ -2,7 +2,9 @@
 FROM python:3.12-slim
 
 ENV PYTHONUNBUFFERED=1 \
+    PORT=8891 \
     HF_HOME=/home/user/huggingface
+
 
 RUN apt-get update && apt-get install -y tini && rm -rf /var/lib/apt/lists/*
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
@@ -23,5 +25,6 @@ COPY . /app
 # Sync the project
 RUN uv sync --frozen
 
+EXPOSE 8891
 ENTRYPOINT [ "tini", "--", "uv", "run", "pydantic-ai-visual"]
 CMD ["start"]
