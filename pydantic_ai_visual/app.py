@@ -32,8 +32,10 @@ def load_messages(messages: str) -> list[ModelMessage]:
         messages = response.text
     return ModelMessagesTypeAdapter.validate_json(messages)
 
+
 def load_tool_return_image(base64_data: str) -> str:
     """Decode base64 image data."""
+
     class Data(BaseModel):
         data: bytes
 
@@ -41,6 +43,7 @@ def load_tool_return_image(base64_data: str) -> str:
             "ser_json_bytes": "base64",
             "val_json_bytes": "base64",
         }
+
     try:
         # Decode base64 data
         data = (Data.model_validate_json(json.dumps({"data": base64_data}))).data
@@ -49,6 +52,7 @@ def load_tool_return_image(base64_data: str) -> str:
 
     # Encode image data to base64 for display
     return base64.b64encode(data).decode("utf-8")
+
 
 def convert_to_chat_messages(  # noqa: C901
     model_messages: list[ModelMessage],
