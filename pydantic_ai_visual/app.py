@@ -5,6 +5,7 @@ from functools import lru_cache
 import gradio as gr
 import httpx
 from gradio import ChatMessage
+from pydantic import BaseModel
 from pydantic_ai.messages import (
     BinaryContent,
     ModelMessage,
@@ -31,6 +32,23 @@ def load_messages(messages: str) -> list[ModelMessage]:
         messages = response.text
     return ModelMessagesTypeAdapter.validate_json(messages)
 
+def load_tool_return_image(base64_data: str) -> str:
+    """Decode base64 image data."""
+    class Data(BaseModel):
+        data: bytes
+
+        model_config = {
+            "ser_json_bytes": "base64",
+            "val_json_bytes": "base64",
+        }
+    try:
+        # Decode base64 data
+        data = (Data.model_validate_json(json.dumps({"data": base64_data}))).data
+    except Exception as e:
+        print(f"Failed to decode base64 data: {e}")
+
+    # Encode image data to base64 for display
+    return base64.b64encode(data).decode("utf-8")
 
 def convert_to_chat_messages(  # noqa: C901
     model_messages: list[ModelMessage],
@@ -82,7 +100,7 @@ def convert_to_chat_messages(  # noqa: C901
                     # Display tool returns
                     if isinstance(part.content, dict) and part.content.get("kind") == "binary":
                         media_type = part.content.get("media_type")
-                        img_data = part.content.get("data")
+                        img_data = load_tool_return_image(part.content.get("data"))
                         img_src = f"data:{media_type};base64,{img_data}"
                         content = f"<img src='{img_src}' alt='Image' />"
                     else:
