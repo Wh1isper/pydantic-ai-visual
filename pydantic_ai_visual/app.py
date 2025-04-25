@@ -195,11 +195,12 @@ def create_app():
         # Chatbot component for displaying messages
         chatbot = gr.Chatbot(
             type="messages",
-            height=600,
+            height=900,
             show_copy_button=True,
             sanitize_html=False,
             allow_tags=True,
             show_label=True,
+            resizable=True,
         )
 
         # Input for manually loading messages
