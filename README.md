@@ -5,6 +5,7 @@ colorFrom: purple
 colorTo: purple
 sdk: docker
 pinned: false
+app_port: 8891
 ---
 
 # pydantic-ai-visual
