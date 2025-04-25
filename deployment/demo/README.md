@@ -20,7 +20,6 @@ cp .env.example .env
 2. Edit the `.env` file and update the following variables:
 
    - `DOMAIN`: Your domain name (e.g., instax.example.com)
-   - `CURRENT_SERVER_LOCATION`: The location of your server (e.g., `http://localhost:8891`, etc.)
    - `CLOUDFLARE_API_TOKEN`: Your Cloudflare API token with DNS edit permissions
    - `CLOUDFLARE_ZONE_ID`: Your Cloudflare Zone ID for the domain
 
